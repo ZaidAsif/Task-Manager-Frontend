@@ -23,6 +23,7 @@ const Login = () => {
       setToken(data.token);
       console.log("Fetched user" , data.user);
       setUser(data.user);
+      localStorage.setItem("token", data.token);
       if (data.user.role === "admin") {
         navigate("/admin-dashboard");
       } else {

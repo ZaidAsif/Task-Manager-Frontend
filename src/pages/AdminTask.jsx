@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { getTasks, deleteTask } from "../api/taskApi";
 import { useTaskStore } from "../store/taskStore";
 import TaskTable from "../components/AdminTasks/TaskTable";
 import TaskFormModal from "../components/AdminTasks/TaskFormModal";
 import TaskFilters from "../components/AdminTasks/TaskFilters";
+import { PlusCircle } from "lucide-react";
 
 export default function AdminTasks() {
   const { tasks, setTasks, loading, setLoading, error, setError } = useTaskStore();
@@ -36,24 +37,31 @@ export default function AdminTasks() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="p-6 space-y-8">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-semibold">Tasks</h1>
+        <div>
+          <h1 className="text-3xl font-bold text-[#2F2F2F]">Task Management</h1>
+          <p className="text-sm text-[#666] mt-1">
+            Monitor, assign, and manage project tasks efficiently.
+          </p>
+        </div>
         <button
           onClick={() => setShowForm(true)}
-          className="bg-[#708D81] text-[#F4F1DE] px-4 py-2 rounded hover:bg-[#5D7A6E] transition"
+          className="flex items-center gap-2 bg-[#556B2F] text-white px-4 py-2 rounded-lg shadow-sm hover:bg-[#445726] transition"
         >
-          + New Task
+          <PlusCircle size={18} /> New Task
         </button>
       </div>
 
-      <TaskFilters onFilter={fetchTasks} />
+      <TaskFilters onFilterChange={fetchTasks} />
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <TaskTable tasks={tasks} onDelete={handleDelete} />
-      )}
+      <div className="bg-white border border-[#E5E5E0] rounded-xl shadow-md p-4">
+        {loading ? (
+          <p className="text-center text-gray-500 py-8">Loading tasks...</p>
+        ) : (
+          <TaskTable tasks={tasks} onDelete={handleDelete} />
+        )}
+      </div>
 
       {showForm && (
         <TaskFormModal

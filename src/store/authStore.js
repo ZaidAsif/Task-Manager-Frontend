@@ -19,7 +19,7 @@ export const useAuthStore = create(
 
       /** ⏳ Rehydrate user on app start if token exists */
       loadUser: async () => {
-        const token = get().token;
+        const token = localStorage.getItem("token");
         if (!token) return;
         try {
           set({ loading: true });

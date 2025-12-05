@@ -7,8 +7,8 @@ import { useAuthStore } from "../store/authStore";
  * away from login/register to their proper dashboard.
  */
 export default function PublicRoute({ children }) {
-  const { user, token } = useAuthStore();
-//   let token = localStorage.getItem("token")
+  const { user} = useAuthStore();
+  let token = localStorage.getItem("token");
   console.log("PublicRoute - token:", token);
   console.log("PublicRoute - user:", user);
 

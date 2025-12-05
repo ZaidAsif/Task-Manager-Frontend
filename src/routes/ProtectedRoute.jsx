@@ -9,7 +9,8 @@ import { useAuthStore } from "../store/authStore";
  *  - Direct URL access protection
  */
 export default function ProtectedRoute() {
-  const { token, user } = useAuthStore();
+  const { user } = useAuthStore();
+  let token = localStorage.getItem("token");
   const location = useLocation();
 
   // 🚫 Not logged in → redirect to login

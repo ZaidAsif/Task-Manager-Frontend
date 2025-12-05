@@ -18,7 +18,7 @@ const Sidebar = () => {
     adminNavItems = [
       { to: "/admin-dashboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
       { to: "/admin-tasks", label: "Tasks", icon: <ListChecks size={18} /> },
-      { to: "/users", label: "Users", icon: <Users size={18} /> },
+      { to: "/admin-users", label: "Users", icon: <Users size={18} /> },
       { to: "/reports", label: "Reports", icon: <FileText size={18} /> }
     ]
   }

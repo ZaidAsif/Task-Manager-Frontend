@@ -14,6 +14,7 @@ import UserLayout from "./layouts/UserLayout";
 // 🧱 Admin Pages
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminTasks from "./pages/AdminTask";
+import AdminUsers from "./pages/AdminUsers";
 
 // 🧱 User Pages
 import UserDashboard from "./pages/UserDashboard";
@@ -60,7 +61,7 @@ export default function App() {
         <Route element={<AdminLayout />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/admin-tasks" element={<AdminTasks />} />
-          <Route path="/users" element={<Users />} />
+          <Route path="/admin-users" element={<AdminUsers />} />
           <Route path="/reports" element={<Reports />} />
         </Route>
 
