@@ -1,10 +1,10 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 import { useState } from "react";
-import { LogOut, LayoutDashboard, ListChecks, Users, FileText } from "lucide-react";
+import { LogOut, LayoutDashboard, ListChecks, Users, FileText, UserCircle, } from "lucide-react";
 
 const Sidebar = () => {
-  const { user, logout } = useAuthStore();
+  const { user, clearAuth } = useAuthStore();
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
 
@@ -19,14 +19,15 @@ const Sidebar = () => {
       { to: "/admin-dashboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
       { to: "/admin-tasks", label: "Tasks", icon: <ListChecks size={18} /> },
       { to: "/admin-users", label: "Users", icon: <Users size={18} /> },
-      { to: "/reports", label: "Reports", icon: <FileText size={18} /> }
+      { to: "/admin-reports", label: "Reports", icon: <FileText size={18} /> },
+      { to: "/admin-profile", label: "Profile", icon: <UserCircle size={18} /> },
     ]
   }
 
   const navItems = adminNavItems;
 
   const handleLogout = () => {
-    logout();
+    clearAuth();
     navigate("/login");
   };
 
@@ -34,7 +35,7 @@ const Sidebar = () => {
     <aside
       className={`${
         collapsed ? "w-16" : "w-64"
-      } bg-[#708D81] text-[#F4F1DE] transition-all duration-300 flex flex-col`}
+      } bg-[#708D81] text-[#F4F1DE] transition-all duration-300 flex flex-col sticky top-0 h-screen`}
     >
       {/* Logo Section */}
       <div className="p-4 font-bold text-lg flex justify-between items-center border-b border-[#5D7A6E]">

@@ -4,7 +4,8 @@ import StatCard from "../components/AdminDashboard/StatCard";
 import TaskStatusChart from "../components/AdminDashboard/TaskStatusChart";
 import TaskPriorityChart from "../components/AdminDashboard/TaskPriorityChart";
 import RecentTasksTable from "../components/AdminDashboard/RecentTasksTable";
-import { ClipboardList, Clock, CheckCircle, AlertTriangle } from "lucide-react";
+import { ClipboardList, Clock, CheckCircle, AlertTriangle, LayoutDashboard } from "lucide-react";
+import PageHeader from "../components/common/PageHeader";
 
 const AdminDashboard = () => {
   const { data, fetchDashboard, loading, error } = useDashboardStore();
@@ -21,6 +22,11 @@ const AdminDashboard = () => {
 
   return (
     <div className="space-y-6">
+      <PageHeader
+        title="Admin Dashboard"
+        subtitle="Overview of all tasks, progress, and productivity insights."
+        icon={<LayoutDashboard size={26} />}
+      />
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard title="Total Tasks" value={statistics.totalTasks} icon={<ClipboardList />} color="olive" />

@@ -15,6 +15,7 @@ import UserLayout from "./layouts/UserLayout";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminTasks from "./pages/AdminTask";
 import AdminUsers from "./pages/AdminUsers";
+import AdminProfile from "./pages/AdminProfile";
 
 // 🧱 User Pages
 import UserDashboard from "./pages/UserDashboard";
@@ -22,6 +23,7 @@ import UserDashboard from "./pages/UserDashboard";
 // 🧩 Route Guards
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
+import AdminReports from "./pages/AdminReports";
 
 // 👥 Mock Pages (placeholders)
 const Users = () => <div className="p-6">👥 Users Management Page (Admin)</div>;
@@ -62,7 +64,8 @@ export default function App() {
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/admin-tasks" element={<AdminTasks />} />
           <Route path="/admin-users" element={<AdminUsers />} />
-          <Route path="/reports" element={<Reports />} />
+          <Route path="/admin-reports" element={<AdminReports />} />
+          <Route path="/admin-profile" element={<AdminProfile />} />
         </Route>
 
         {/* 🙋‍♂️ User Routes */}

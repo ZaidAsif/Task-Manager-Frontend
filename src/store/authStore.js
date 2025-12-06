@@ -15,7 +15,10 @@ export const useAuthStore = create(
       setLoading: (loading) => set({ loading }),
       setError: (error) => set({ error }),
 
-      clearAuth: () => set({ user: null, token: null }),
+      clearAuth: () => (
+        set({ user: null, token: null }),
+        localStorage.removeItem("token")
+      ),
 
       /** ⏳ Rehydrate user on app start if token exists */
       loadUser: async () => {
