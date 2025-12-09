@@ -20,9 +20,9 @@ export default function UserTable({ invitations }) {
                 <td className="px-4 py-3 font-medium">{inv.email}</td>
                 <td className="px-4 py-3 text-[#444]">{inv.speciality}</td>
                 <td className="px-4 py-3">
-                  {inv.isRegistered ? (
+                  {inv.status === "accepted" ? (
                     <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
-                      Registered
+                      Accepted
                     </span>
                   ) : (
                     <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">

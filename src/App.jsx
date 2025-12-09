@@ -24,6 +24,10 @@ import UserDashboard from "./pages/UserDashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
 import AdminReports from "./pages/AdminReports";
+import InvitePage from "./pages/InvitePage";
+import ConfirmInvitePage from "./pages/ConfirmInvitePage";
+import UserTasks from "./pages/UserTasks";
+import UserProfile from "./pages/UserProfile";
 
 // 👥 Mock Pages (placeholders)
 const Users = () => <div className="p-6">👥 Users Management Page (Admin)</div>;
@@ -57,9 +61,10 @@ export default function App() {
         }
       />
 
-      {/* 🔒 Protected Routes */}
+      <Route path="/invite" element={<InvitePage />} />
+      <Route path="/invite/confirm" element={<ConfirmInvitePage />} />
+
       <Route element={<ProtectedRoute />}>
-        {/* 👑 Admin Routes */}
         <Route element={<AdminLayout />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/admin-tasks" element={<AdminTasks />} />
@@ -68,14 +73,14 @@ export default function App() {
           <Route path="/admin-profile" element={<AdminProfile />} />
         </Route>
 
-        {/* 🙋‍♂️ User Routes */}
         <Route element={<UserLayout />}>
           <Route path="/user-dashboard" element={<UserDashboard />} />
-          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/tasks" element={<UserTasks />} />
+          {/* <Route path="/tasks/:id" element={<TaskDetails />} /> */}
+          <Route path="/user-profile" element={<UserProfile />} />
         </Route>
       </Route>
 
-      {/* 🚫 Fallback */}
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );

@@ -1,30 +1,53 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
-import { useState } from "react";
-import { LogOut, LayoutDashboard, ListChecks, Users, FileText, UserCircle, } from "lucide-react";
+import { useState, useEffect } from "react";
+import {
+  LogOut,
+  LayoutDashboard,
+  ListChecks,
+  Users,
+  FileText,
+  UserCircle,
+} from "lucide-react";
 
 const Sidebar = () => {
   const { user, clearAuth } = useAuthStore();
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
 
-  // const navItems = [
-  //   { to: "/dashboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
-  //   { to: "/tasks", label: "Tasks", icon: <ListChecks size={18} /> },
-  // ];
+  // AUTO COLLAPSE ON MOBILE
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setCollapsed(true);    // auto collapse on mobile
+      } else {
+        setCollapsed(false);   // full width on desktop
+      }
+    };
 
-  let adminNavItems;
+    handleResize(); // run on load
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  let navItems;
+
   if (user?.role === "admin") {
-    adminNavItems = [
+    navItems = [
       { to: "/admin-dashboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
       { to: "/admin-tasks", label: "Tasks", icon: <ListChecks size={18} /> },
       { to: "/admin-users", label: "Users", icon: <Users size={18} /> },
       { to: "/admin-reports", label: "Reports", icon: <FileText size={18} /> },
       { to: "/admin-profile", label: "Profile", icon: <UserCircle size={18} /> },
-    ]
+    ];
+  } else if (user?.role === "user") {
+    navItems = [
+      { to: "/user-dashboard", label: "Dashboard", icon: <LayoutDashboard size={18} /> },
+      { to: "/tasks", label: "My Tasks", icon: <ListChecks size={18} /> },
+      { to: "/user-profile", label: "Profile", icon: <UserCircle size={18} /> },
+    ];
   }
-
-  const navItems = adminNavItems;
 
   const handleLogout = () => {
     clearAuth();
@@ -33,9 +56,8 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`${
-        collapsed ? "w-16" : "w-64"
-      } bg-[#708D81] text-[#F4F1DE] transition-all duration-300 flex flex-col sticky top-0 h-screen`}
+      className={`${collapsed ? "w-16" : "w-64"} 
+      bg-[#708D81] text-[#F4F1DE] transition-all duration-300 flex flex-col sticky top-0 h-screen`}
     >
       {/* Logo Section */}
       <div className="p-4 font-bold text-lg flex justify-between items-center border-b border-[#5D7A6E]">
