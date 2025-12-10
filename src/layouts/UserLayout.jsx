@@ -12,7 +12,7 @@ export default function UserLayout() {
       </div>
 
       {/* MAIN CONTENT OFFSET BY SIDEBAR WIDTH */}
-      <div className="flex-1 flex flex-col ml-56 overflow-hidden">
+      <div className="flex-1 flex flex-col ml-62 overflow-hidden">
         {/* adjust ml-56 to your sidebar width */}
         
         <Topbar />

@@ -10,3 +10,4 @@ export const updateChecklist = (id, data) =>
   api.put(`/tasks/${id}/todo`, data);
 export const getDashboardData = () => api.get("/tasks/dashboard-data");
 export const getUserDashboardData = () => api.get("/tasks/user-dashboard-data");
+export const getTaskById = (id) => api.get(`/tasks/${id}`);

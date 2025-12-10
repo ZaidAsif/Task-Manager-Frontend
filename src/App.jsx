@@ -28,6 +28,7 @@ import InvitePage from "./pages/InvitePage";
 import ConfirmInvitePage from "./pages/ConfirmInvitePage";
 import UserTasks from "./pages/UserTasks";
 import UserProfile from "./pages/UserProfile";
+import TaskDetails from "./pages/TaskDetails";
 
 // 👥 Mock Pages (placeholders)
 const Users = () => <div className="p-6">👥 Users Management Page (Admin)</div>;
@@ -76,7 +77,7 @@ export default function App() {
         <Route element={<UserLayout />}>
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/tasks" element={<UserTasks />} />
-          {/* <Route path="/tasks/:id" element={<TaskDetails />} /> */}
+          <Route path="/tasks/:id" element={<TaskDetails />} />
           <Route path="/user-profile" element={<UserProfile />} />
         </Route>
       </Route>
